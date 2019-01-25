@@ -1,0 +1,92 @@
+<div class="recipe-detail-wrapper">
+  <div class="recipe-detail-header">
+  </div>
+  <div class="recipe-detail-body">
+     <div class="recipe-detail-row row">
+        <div class="card-wrapper col-xs-6">
+            <mat-card class="recipe-info-card">
+                <mat-card-header class="recipe-info-header-wrapper card-header-wrapper">
+                    <mat-card-title class="recipe-info-title"><span>{{ myRecipe[0]?.name }}</span></mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="card-content-wrapper">
+                    <div class="recipe-info-source card-content-text">
+                        <label>Source: </label>
+                        <span> {{ myRecipe[0]?.source }} </span>
+                    </div>
+                    <div class="recipe-info-ingredients card-content-text">
+                        <label>Ingredients: </label>
+                        <div class="row" *ngFor="let ingredient of myRecipe[0]?.ingredients">
+                            <div class="col-xs-6 col-md-3 col-ld-1 ingredient-name" >
+                                <span>{{ ingredient?.name }}</span> 
+                            </div>
+                            <div class="col-xs-6 col-md-3 col-lg-1">      
+                                <span>{{ ingredient?.quantity }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" row recipe-info-prepTime card-content-text">
+                        <label class="col-xs-6 col-md-3 col-ld-2">Preparation time: </label>                  
+                        <div class="col-xs-6 col-md-3 col-ld-2" *ngIf="myRecipe[0]?.preparationTime.substr(0,2) === '00'">
+                            <div *ngIf="myRecipe[0]?.preparationTime.substr(3,2) === '00'">
+                                   00 hours 00 minutes
+                            </div>
+                            <div *ngIf="myRecipe[0]?.preparationTime.substr(3,2) === '01'">
+                                {{ myRecipe[0]?.preparationTime | slice:3:5 }} minute
+                            </div>
+                            <div *ngIf="myRecipe[0]?.preparationTime.substr(3,2) > '01'">
+                                {{ myRecipe[0]?.preparationTime | slice:3:5 }} minutes
+                            </div>
+                        </div>
+                
+                        <div class="col-xs-6 col-md-4 col-ld-2" *ngIf="myRecipe[0]?.preparationTime.substr(0,2) !== '00'">
+                            <div *ngIf="myRecipe[0]?.preparationTime.substr(0,2) === '01'">
+                                <div *ngIf="myRecipe[0]?.preparationTime.substr(3,2) === '00'">
+                                    {{ myRecipe[0]?.preparationTime | slice:0:2 }} hour
+                                </div>
+                                <div *ngIf="myRecipe[0]?.preparationTime.substr(3,2) === '01'">
+                                    {{ myRecipe[0]?.preparationTime | slice:0:2 }} hour {{ myRecipe[0]?.preparationTime | slice:3:5 }} minute
+                                </div>
+                                <div *ngIf="myRecipe[0]?.preparationTime.substr(3,2) > '01'">
+                                    {{ myRecipe[0]?.preparationTime | slice:0:2 }} hour {{ myRecipe[0]?.preparationTime | slice:3:5 }} minutes
+                                </div>
+                            </div>
+            
+                            <div *ngIf="myRecipe[0]?.preparationTime.substr(0,2) !== '01'">
+                                <div *ngIf="myRecipe[0]?.preparationTime.substr(3,2) === '00'">
+                                    {{ myRecipe[0]?.preparationTime | slice:0:2 }} hours
+                                </div>
+                                <div *ngIf="myRecipe[0]?.preparationTime.substr(3,2) === '01'">
+                                    {{ myRecipe[0]?.preparationTime | slice:0:2 }} hours {{ myRecipe[0]?.preparationTime | slice:3:5 }} minute
+                                </div>
+                                <div *ngIf="myRecipe[0]?.preparationTime.substr(3,2) > '01'">
+                                    {{ myRecipe[0]?.preparationTime | slice:0:2 }} hours {{ myRecipe[0]?.preparationTime | slice:3:5 }} minutes
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="recipe-info-button card-content-text">
+                        <button class="recipe-back-btn btn btn-primary" (click)="onRecipeList()">Back to List</button>
+                        <button class="recipe-delete-btn btn btn-danger" mat-dialog-close="yes" (click)="onDeleteRecipe(myRecipe[0]?.id)">Delete Recipe</button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="card-wrapper col-xs-6">
+            <mat-card class="instructions-card">
+                <mat-card-header class="instructions-header-wrapper card-header-wrapper">
+                    <div mat-card-avatar></div>
+                    <mat-card-title class="instructions-title"><h4></h4></mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="card-content-wrapper">
+                    <div class="card-content-text">
+                        <label>Recipe instructions: </label>
+                        <div class="instructions-card-description card-content-text"> 
+                            {{ myRecipe[0]?.instructions }} 
+                        </div>
+                    </div>
+                </mat-card-content>
+             </mat-card>
+         </div>
+     </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+.cdk-overlay-pane {
+    max-height: 70vh;
+}
+
+.recipe-detail-header {
+    display: block;
+}
+
+.recipe-detail-header .recipe-detail-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.recipe-detail-wrapper {
+    max-height: 70vh;
+    margin-top: 50px;
+    margin-left: 100px; 
+    margin-right: 100px;
+    margin-bottom: 30px;
+}
+
+.recipe-detail-body {
+    width: 100%;
+}
+
+.recipe-back-btn {
+    margin-right: 20px;
+}
+
+.card-header-wrapper {
+    background-color: gainsboro;
+    margin-top: -24px!important;
+    padding-top: 12px!important;
+    margin-left: -24px;
+    padding-left: 24px;
+    margin-right: -24px;
+    padding-right: 24px;
+    margin-bottom: 24px;
+}
+
+.card-content-text {
+    margin-bottom:5px;
+}
+
+.ingredient-name {
+    padding-left: 50px;
+}
+
+.recipe-info-title {
+    font-size: meduim;
+}
+
+.recipe-info-button {
+    margin-top: 30px;
+}
+
+.recipe-info-ingredients{
+    margin-bottom: 10px;
+}
+
+.recipe-info-header-wrapper, .instructions-header-wrapper {
+    background-color: #c0d8e3;
+}
+
+.card-content-text {
+    font-size: medium;
+}
+
+.spinner {
+    margin: 0 auto;
+    margin-top: 300px;
+}
+
+@media screen and (min-width: 769px) {
+    .instructions-card-description {
+        text-align: justify;
+    }
+}

@@ -1,0 +1,123 @@
+<div class="row recipe-list-wrapper">
+  <div class="col-xs-6 col-md-12 col-ld-12">
+    <table mat-table *ngIf="recipes" [dataSource]="recipes" class="mat-elevation-z8 mat-table">
+
+      <!-- ID Column -->
+      <ng-container matColumnDef="id" class="mat-container">
+        <mat-header-cell *matHeaderCellDef class="mat-header-cell">ID</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="mat-cell"> {{element?.id}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name" class="mat-container">
+        <mat-header-cell *matHeaderCellDef class="mat-header-cell">Name</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="mat-cell"> {{element?.name}} </mat-cell>
+      </ng-container>
+
+      <!-- Source Column -->
+      <ng-container matColumnDef="source" class="mat-container">
+        <mat-header-cell *matHeaderCellDef class="mat-header-cell">Source</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="mat-cell"> {{element?.source}} </mat-cell>
+      </ng-container>
+
+      <!-- Number of Ingredients Column -->
+      <ng-container matColumnDef="ingNumber" class="mat-container">
+        <mat-header-cell *matHeaderCellDef class="mat-header-cell">No. Ing</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="mat-cell"> 
+            <div *ngIf="element.ingredients">   {{element.ingredients.length}}</div>
+        </mat-cell>  
+      </ng-container>
+
+      <!-- List of Ingredients Column -->
+      <ng-container  matColumnDef="ingredients" class="mat-container">
+        <mat-header-cell *matHeaderCellDef class="mat-header-cell">List of Ing.</mat-header-cell>
+        <mat-cell *matCellDef="let element;" class="mat-cell"> 
+           <span *ngFor="let ing of element.ingredients; let i=index">
+            <span *ngIf="(i <= 2)">
+              <span *ngIf="i!=element.ingredients.length-1">
+                  {{ing?.name}}<span *ngIf="i!=element.ingredients.length-1">&#44;&nbsp;</span>
+              </span>
+              <span *ngIf="i==element.ingredients.length-1">
+                  {{ing?.name}}
+              </span>
+            </span>    
+            <span *ngIf="(i > 2)" class="hellip-format">
+              <span *ngIf="i==element.ingredients.length-1" class="hellip-format">
+                  &hellip;
+              </span>
+            </span>
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Instructions Column -->
+      <ng-container matColumnDef="instructions" class="mat-container">
+        <mat-header-cell *matHeaderCellDef class="mat-header-cell">Instructions</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="mat-cell">{{element?.instructions | truncate : 50}}</mat-cell>
+      </ng-container>
+
+      <!-- Preparation Time Column -->
+      <ng-container matColumnDef="preparationTime" class="mat-container">
+        <mat-header-cell *matHeaderCellDef class="mat-header-cell">Preparation Time</mat-header-cell>
+            <mat-cell *matCellDef="let element" class="mat-cell"> 
+              <div *ngIf="element?.preparationTime.substr(0,2) === '00'">
+                <div *ngIf="element?.preparationTime.substr(3,2) === '00'">
+                     00 hours 00 minutes
+                </div>
+                <div *ngIf="element?.preparationTime.substr(3,2) === '01'">
+                    {{ element?.preparationTime | slice:3:5 }} minute
+                </div>
+                <div *ngIf="element?.preparationTime.substr(3,2) > '01'">
+                    {{ element?.preparationTime | slice:3:5 }} minutes
+                </div>
+              </div>
+
+              <div *ngIf="element?.preparationTime.substr(0,2) !== '00'">
+                <div *ngIf="element?.preparationTime.substr(0,2) === '01'">
+                    <div *ngIf="element?.preparationTime.substr(3,2) === '00'">
+                        {{ element?.preparationTime | slice:0:2 }} hour
+                    </div>
+                    <div *ngIf="element?.preparationTime.substr(3,2) === '01'">
+                        {{ element?.preparationTime | slice:0:2 }} hour {{ element?.preparationTime | slice:3:5 }} minute
+                    </div>
+                    <div *ngIf="element?.preparationTime.substr(3,2) > '01'">
+                        {{ element?.preparationTime | slice:0:2 }} hour {{ element?.preparationTime | slice:3:5 }} minutes
+                    </div>
+                </div>
+
+                <div *ngIf="element?.preparationTime.substr(0,2) !== '01'">
+                    <div *ngIf="element?.preparationTime.substr(3,2) === '00'">
+                        {{ element?.preparationTime | slice:0:2 }} hours
+                    </div>
+                    <div *ngIf="element?.preparationTime.substr(3,2) === '01'">
+                        {{ element?.preparationTime | slice:0:2 }} hours {{ element?.preparationTime | slice:3:5 }} minute
+                    </div>
+                    <div *ngIf="element?.preparationTime.substr(3,2) > '01'">
+                        {{ element?.preparationTime | slice:0:2 }} hours {{ element?.preparationTime | slice:3:5 }} minutes
+                    </div>
+                </div>
+              </div>
+            </mat-cell>
+      </ng-container>
+
+      <!-- Display Recipe Column -->
+      <ng-container matColumnDef="display" class="mat-container">
+          <mat-header-cell *matHeaderCellDef class="mat-header-cell">Display</mat-header-cell>
+          <mat-cell *matCellDef="let element" class="mat-cell">
+          <a class="btn btn-primary" [routerLink]="[ '/recipedetail', element?.id]">Display</a>
+          </mat-cell>
+      </ng-container>
+
+      <!-- Delete Recipe Column -->
+      <ng-container matColumnDef="delete" class="mat-container">
+          <mat-header-cell *matHeaderCellDef class="mat-header-cell">Delete</mat-header-cell>
+          <mat-cell *matCellDef="let element;" class="mat-cell">
+          <a class="btn btn-danger" (click)="onDeleteRecipe(element?.id)">Delete</a>
+          </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </table>
+  </div>
+</div>

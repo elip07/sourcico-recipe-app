@@ -1,0 +1,16 @@
+body { padding-bottom: 70px; }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: lightgray;
+    color: black;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+ }
+
+  .footer-text {
+      margin-top: 15px;
+  }

@@ -1,0 +1,46 @@
+[
+    {
+      "id": "1",
+      "name": "Roast pork with potatoes",
+      "source": "Cook book Tasty",
+      "ingredients": [
+        { "name": "meat", "quantity": 1 },
+        { "name": "potatoes", "quantity": 4 },
+        { "name": "peppers", "quantity": 1 },
+        { "name": "tomatoes", "quantity": 2 },
+        { "name": "oil", "quantity": 1 },
+        { "name": "salt", "quantity": 1 }
+      ],
+      "preparationTime": "02:00",
+      "instructions": "Pre-heat the oven to 240°C. Score the skin of the pork. Place the pork in a tin, together with the vegetables. Place it all in the oven and roast it for 25 minutes. Add half cup of water and continue to be cooked for 1 hour more on 200°C."
+    },
+    {
+        "id": "2",
+        "name": "Traditional dish",
+        "source": "Cook book Tasty",
+        "ingredients": [
+          { "name": "tomatoes", "quantity": 2 },
+          { "name": "peppers", "quantity": 5 },
+          { "name": "eggs", "quantity": 3 },
+          { "name": "oil", "quantity": 1 },
+          { "name": "salt", "quantity": 1 },
+          { "name": "cheese", "quantity": 1 }
+        ],
+        "preparationTime": "00:25",
+        "instructions": "Cut the peppers and tomatoes into pieces. Heat olive oil in a pan. Cook the peppers in the pan about 5 minutes. Add the tomatoes and a dash of salt. Add eggs and cheese and cook the mixture for 5 more minutes."
+    },
+    {
+        "id": "3",
+        "name": "Cake Tasty",
+        "source": "Cook book Tasty",
+        "ingredients": [
+          { "name": "flour", "quantity": 1 },
+          { "name": "eggs", "quantity": 4 },
+          { "name": "milk", "quantity": 1 },
+          { "name": "sugar", "quantity": 1 }
+        ],
+        "preparationTime": "00:40",
+        "instructions": "Mix the flour and the sugar. Then add milk and eggs. After all of it is good mixtured, put it in a pan with butter. Bake it for 30 minutes on 200°C. The cake is ready for searving."
+    }
+  ]
+  
